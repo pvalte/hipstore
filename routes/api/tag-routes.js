@@ -15,6 +15,8 @@ router.get('/', (req, res) => {
       {
         model: Product,
         attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
+        through: ProductTag,
+        as: 'tagged_products'
       }
     ]
   })
@@ -41,6 +43,8 @@ router.get('/:id', (req, res) => {
       {
         model: Product,
         attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
+        through: ProductTag,
+        as: 'tagged_products'
       }
     ]
   })
@@ -67,7 +71,7 @@ router.put('/:id', (req, res) => {
   // update a tag's name by its `id` value
   Tag.update(
     {
-      title: req.body.tag_name
+      tag_name: req.body.tag_name
     },
     {
       where: {
